@@ -20,7 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
+#### Client
 
+Instantiate a client, providing the IP of the host and the security token:
+```ruby
+
+client = Portal::Client.new('127.0.0.1', 'secret')
+
+```
+
+#### Blobs
+
+List all blobs
+```ruby
+client.blobs
+```
+
+Fetch metadata about a specific blob
+```ruby
+client.blob(id)
+```
+
+Remove a blob:
+```ruby
+client.remove_blob(id)
+```
 
 ## Development
 
