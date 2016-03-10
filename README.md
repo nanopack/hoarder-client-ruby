@@ -25,7 +25,7 @@ Or install it yourself as:
 Instantiate a client, providing the IP of the host and the security token:
 ```ruby
 
-client = Portal::Client.new('127.0.0.1', 'secret')
+client = Hoarder::Client.new('127.0.0.1', 'secret')
 
 ```
 
