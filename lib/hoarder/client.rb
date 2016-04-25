@@ -30,7 +30,7 @@ class Hoarder::Client
 
   def head(path)
     res = connection.get(path) do |req|
-      req.headers['X-TOKEN'] = token
+      req.headers['x-auth-token'] = token
     end
 
     if res.status == 200
@@ -42,7 +42,7 @@ class Hoarder::Client
 
   def get(path)
     res = connection.get(path) do |req|
-      req.headers['X-TOKEN'] = token
+      req.headers['x-auth-token'] = token
     end
 
     if res.status == 200
@@ -54,7 +54,7 @@ class Hoarder::Client
 
   def post(path, payload)
     res = connection.post(path) do |req|
-      req.headers['X-TOKEN'] = token
+      req.headers['x-auth-token'] = token
       req.body = to_json(payload)
     end
 
@@ -67,7 +67,7 @@ class Hoarder::Client
 
   def put(path, payload)
     res = connection.put(path) do |req|
-      req.headers['X-TOKEN'] = token
+      req.headers['x-auth-token'] = token
       req.body = to_json(payload)
     end
 
@@ -80,7 +80,7 @@ class Hoarder::Client
 
   def delete(path, payload={})
     res = connection.delete(path) do |req|
-      req.headers['X-TOKEN'] = token
+      req.headers['x-auth-token'] = token
       if payload
         req.body = to_json(payload)
       end
