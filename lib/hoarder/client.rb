@@ -29,12 +29,12 @@ class Hoarder::Client
   protected
 
   def head(path)
-    res = connection.get(path) do |req|
+    res = connection.head(path) do |req|
       req.headers['x-auth-token'] = token
     end
 
-    if res.status == 200
-      from_json(res.body) rescue ""
+    if res.status >= 200 && res.status < 300
+      from_json(res.headers) rescue ""
     else
       raise "#{res.status}:#{res.body}"
     end
@@ -45,7 +45,7 @@ class Hoarder::Client
       req.headers['x-auth-token'] = token
     end
 
-    if res.status == 200
+    if res.status >= 200 && res.status < 300
       from_json(res.body) rescue ""
     else
       raise "#{res.status}:#{res.body}"
@@ -58,7 +58,7 @@ class Hoarder::Client
       req.body = to_json(payload)
     end
 
-    if res.status == 200
+    if res.status >= 200 && res.status < 300
       from_json(res.body) rescue ""
     else
       raise "#{res.status}:#{res.body}"
@@ -71,7 +71,7 @@ class Hoarder::Client
       req.body = to_json(payload)
     end
 
-    if res.status == 200
+    if res.status >= 200 && res.status < 300
       from_json(res.body) rescue ""
     else
       raise "#{res.status}:#{res.body}"
@@ -86,7 +86,7 @@ class Hoarder::Client
       end
     end
 
-    if res.status == 200
+    if res.status >= 200 && res.status < 300
       true
     else
       raise "#{res.status}:#{res.body}"
