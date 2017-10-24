@@ -94,10 +94,11 @@ class Hoarder::Client
   end
 
   def connection
-    @connection ||= ::Faraday.new({
+    @connection ||= ::Faraday.new(
       url: "https://#{host}:7410",
-      :ssl => {:verify => false}
-    })
+      ssl: { verify: false },
+      request: { timeout: 10 }
+    )
   end
 
   def to_json(data)
